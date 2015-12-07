@@ -12,6 +12,27 @@ switch(path){
         res.end();
     break;
 
+    case '/':
+        fs.readFile(__dirname+'/index.html',function(err,data){
+
+            if(err)
+                return send404(res);
+            res.writeHead(200,{'Content-Type':'text/html'});
+            res.write(data,'utf8');
+            res.end();
+        });
+        break;
+    case '/twitter':
+            fs.readFile(__dirname+'/twitter.html',function(err,data){
+
+                if(err)
+                    return send404(res);
+                res.writeHead(200,{'Content-Type':'text/html'});
+                res.write(data,'utf8');
+                res.end();
+            });
+            break;
+
     default:
     send404(res);
     }
