@@ -18,10 +18,16 @@ var mimeTypes = {
 //server creation
 http.createServer(function(req,res){
     var uri = url.parse(req.url).pathname;
+
     var fileName = path.join(process.cwd(),unescape(uri));
     console.log('Loading '+uri);
     var stats;
-
+   if(uri == "/contact/send"){
+        console.log(uri + " hahahahaha ");
+        console.log(((req.url.split('?')[1]).split('&')[1]).split('=')[0]);
+        res.end();
+        return;
+   }
     try{
         stats=fs.lstatSync(fileName);
     }catch(e){
